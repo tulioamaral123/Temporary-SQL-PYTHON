@@ -1,0 +1,62 @@
+from time import sleep
+cadastro = []
+dados = []
+while True:
+    print(f" {'_'*24} ")
+    print(f"|          MENU          |")
+    print(f"| {'_'*23}|")
+    print('|1 - Lista de informações|')
+    print('|2 - Adicionar dado      |')
+    print('|3 - Excluir dado        |')
+    print('|4 - Sair                |')
+    print(f" {'_'*24} ")
+    menu = int(input("Digite uma opção: "))
+    if menu == 1:
+        while True:
+            if len(dados) > 0:
+                print(' _________________________________________')
+                print('|    Nª    |     NOME     |     IDADE     |')
+                print(' _________________________________________')
+                for c in range(0, len(dados)):
+                    print(f"|    {c+1}ª    | {dados[c][0]}{' ' * (13 - len(dados[c][0]))}|       {dados[c][1]}      |")
+                print(' _________________________________________')
+                continuar = str(input('Deseja voltar ao menu? [S/N]'))
+                if continuar in 'Ss':
+                    break
+            else:
+                print("Nenhum dado foi cadastrado!")
+                sleep(2)
+                break
+        menu = 5
+    if menu == 2:
+        nome = str(input("Digite um nome: "))
+        idade = int(input("Digite uma idade: "))
+        cadastro.append(nome)
+        cadastro.append(idade)
+        dados.append(cadastro[:])
+        cadastro.clear()
+        print("Informações adicionadas!")
+        sleep(2)
+    if menu == 3:
+        if len(dados) > 0:
+            print(' _________________________________________')
+            print('|    Nª    |     NOME     |     IDADE     |')
+            print(' _________________________________________')
+            for c in range(0, len(dados)):
+                print(f"|    {c+1}ª    | {dados[c][0]}{' ' * (13 - len(dados[c][0]))}|       {dados[c][1]}      |")
+            print(' _________________________________________')
+            deletar = int(input('Qual dado deseja excluir: '))
+            if deletar not in dados[:]:
+                del dados[deletar-1]
+                print("Informações excluídas!")
+                sleep(2)
+            else:
+                print('Não existe essa localização de dados!')
+        else:
+            print('Não há dados para serem deletados!')
+            sleep(2)
+    if menu == 4:
+        print("Todos os dados serão apagados!")
+        desejaSair = str(input("Você realmente quer sair: [S/N]"))
+        if desejaSair in 'Ss':
+            break
